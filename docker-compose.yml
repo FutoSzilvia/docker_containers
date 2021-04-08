@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  db:
+    image: postgres:12
+    environment:
+      - POSTGRES_DB=eyelearn_db
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=bts2013
+    volumes:
+      - "postgres_data:/var/lib/postgresql/data"
+    ports:
+      - "5231:5439"
+  app:
+    build: .
+    command: python code/manage.py runserver 0.0.0.0:5230
+    volumes:
+      - .:/code
+    ports:
+      - "5230:5230"
+    depends_on:
+      - db
+
+volumes:
+  postgres_data: {}
