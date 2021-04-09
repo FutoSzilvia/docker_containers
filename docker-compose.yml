@@ -13,7 +13,7 @@ services:
       - "5231:5439"
   app:
     build: .
-    command: python code/manage.py runserver 0.0.0.0:5230
+    command: bash -c "python manage.py runserver 0.0.0.0:5230"
     volumes:
       - .:/code
     ports:
